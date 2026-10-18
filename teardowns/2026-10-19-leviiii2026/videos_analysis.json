@@ -1,0 +1,30 @@
+{
+ "7695023671311715618": {
+  "duration": 33.3,
+  "size": "576x768",
+  "vcodec": "h264",
+  "silent_secs": 0,
+  "max_rms": 5116
+ },
+ "7697233600051285311": {
+  "duration": 44.7,
+  "size": "720x960",
+  "vcodec": "h264",
+  "silent_secs": 0,
+  "max_rms": 7071
+ },
+ "7696520550478318884": {
+  "duration": 52.7,
+  "size": "720x960",
+  "vcodec": "h264",
+  "silent_secs": 0,
+  "max_rms": 4102
+ },
+ "7695412663240772879": {
+  "duration": 50.6,
+  "size": "720x960",
+  "vcodec": "h264",
+  "silent_secs": 0,
+  "max_rms": 4793
+ }
+}
