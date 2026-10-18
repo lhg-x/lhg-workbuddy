@@ -9,11 +9,15 @@
 4. **规则来自数据**：判断阈值统一读 `playbook/rules.md`；复盘得到的新结论必须写回该文件并注明样本量。
 5. **账号上下文**：动手前先读 `account/profile.md`（定位、锚词库、禁区）。
 
+## 方法论
+拆解一律按 `playbook/teardown-method.md`（账号 → 视频 → 画面语法三层）；找对标按 `playbook/quick-find.md`。
+
 ## Skill 路由
 | 用户说 | 用 |
 | --- | --- |
 | "今天有什么热点 / 找选题" | `skills/trend-radar` |
-| "帮我找对标 / 这条值不值得跟" | `skills/benchmark-finder` |
+| "帮我找对标 / 这条值不值得跟" | `skills/benchmark-finder`（先按 `playbook/quick-find.md`） |
+| "拆一下这个号 / 这个博主值不值得对标" | `skills/account-teardown` |
 | "拆一下这条 / 蒸馏风格" | `skills/benchmark-distill` |
 | "看看数据 / 这条要不要投抖加 / 要不要隐藏" | `skills/post-review` |
 
