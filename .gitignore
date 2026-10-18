@@ -1,0 +1,11 @@
+template/
+*.mp4
+*.mov
+*.m4a
+*.wav
+teardowns/**/frames/
+teardowns/**/*.jpg
+teardowns/**/*.png
+.venv/
+__pycache__/
+.DS_Store
