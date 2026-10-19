@@ -35,7 +35,7 @@ python3 scripts/render_canvas.py --list-themes
 
 见 `example.json`。全局字段：
 
-- `host`：出镜窗下方的名牌（如"老刘 · AI 实验室"）
+- `host`：出镜窗下方的名牌（如"lhg·AI实验室"）
 - `avatars`：照片列表（相对 JSON 的路径）。**按 seed 打乱后每页轮换一张**，不挖洞模式下直接嵌进圆窗；单页也可以写 `"avatar"` 指定
 - `nav`：`logo` 单字、`brand`、`topic`（建议写"一天一个小技巧 · 第 N 期"做系列识别）、`tabs`
 - `[词]` = 高亮；`\n` = 换行；`icon` 填 `icons.py` 里的名字（spark bolt gift clock coin check layers cursor chat rocket gear folder globe wand chart lock phone target book play star link cpu calendar video doc fire key heart arrow user skill）
