@@ -1,0 +1,229 @@
+{
+ "_说明": "示例文案，数字均为示意。[词] = 高亮；icon 用 icons.py 里的名字或 emoji；avatars 填你的照片路径（相对本文件），每页随机轮换",
+ "host": "老刘 · AI 实验室",
+ "avatars": [],
+ "nav": {
+  "logo": "W",
+  "brand": "WorkBuddy",
+  "topic": "一天一个小技巧 · 第 07 期",
+  "tabs": [
+   "技能",
+   "设置",
+   "实操"
+  ]
+ },
+ "pages": [
+  {
+   "type": "cover",
+   "badge": "新手必看",
+   "title": "装完别急着用\n先改这[6 个设置]",
+   "subtitle": "不改等于只用了一半，改完像换了个 AI",
+   "chips": [
+    {
+     "icon": "clock",
+     "text": "3 分钟改完"
+    },
+    {
+     "icon": "coin",
+     "text": "省一半积分"
+    },
+    {
+     "icon": "check",
+     "text": "零基础可跟"
+    }
+   ],
+   "side": {
+    "kicker": "今天讲什么",
+    "icon": "target",
+    "headline": "6 个设置\n一次讲清",
+    "sub": "每个都附实操录屏"
+   },
+   "caption": "装完 WorkBuddy 先别急着用",
+   "hero": "gear"
+  },
+  {
+   "type": "stats",
+   "badge": "为什么要改",
+   "title": "默认设置有多[浪费]",
+   "subtitle": "同一个任务，改前 vs 改后（示意数据）",
+   "stats": [
+    {
+     "icon": "coin",
+     "num": "120",
+     "unit": "积分",
+     "label": "默认模式消耗"
+    },
+    {
+     "icon": "bolt",
+     "num": "45",
+     "unit": "积分",
+     "label": "改完以后",
+     "warm": true
+    }
+   ],
+   "side": {
+    "kicker": "算笔账",
+    "icon": "chart",
+    "headline": "省下 [60%]",
+    "sub": "免费版每月 100 积分，省着用"
+   },
+   "caption": "同一个任务 积分差了[一倍多]"
+  },
+  {
+   "type": "list",
+   "badge": "6 个设置",
+   "title": "按这个顺序[挨个改]",
+   "items": [
+    {
+     "icon": "user",
+     "title": "先让它[认识你]",
+     "desc": "记忆 / 个性化，写清职业和习惯",
+     "tag": "必改"
+    },
+    {
+     "icon": "layers",
+     "title": "默认用 Plan 模式",
+     "desc": "先确认方向再动手，少返工",
+     "tag": "省积分"
+    },
+    {
+     "icon": "folder",
+     "title": "指定工作文件夹",
+     "desc": "它只动这个目录，安全"
+    },
+    {
+     "icon": "skill",
+     "title": "装 3 个基础 skill",
+     "desc": "文档 / 表格 / 浏览器",
+     "warm": true
+    }
+   ],
+   "side": {
+    "kicker": "清单",
+    "icon": "check",
+    "headline": "先改前 4 个",
+    "sub": "后 2 个进阶的放下一页"
+   },
+   "caption": "这 4 个 [新手必改]"
+  },
+  {
+   "type": "screen",
+   "title": "打开设置 → 记忆",
+   "subtitle": "实操演示",
+   "screen": {
+    "url": "WorkBuddy · 设置 · 记忆",
+    "step": "STEP 1"
+   },
+   "side": {
+    "kicker": "跟着做",
+    "icon": "cursor",
+    "headline": "点左下角\n齿轮图标",
+    "sub": "录屏里红框位置"
+   },
+   "caption": "左下角齿轮 → [记忆]"
+  },
+  {
+   "type": "steps",
+   "badge": "自定义指令",
+   "title": "三步写一份\n[员工手册]",
+   "steps": [
+    {
+     "title": "说清你是谁",
+     "desc": "职业、常做的事、输出习惯"
+    },
+    {
+     "title": "定规矩",
+     "desc": "不确定就问，不许瞎编"
+    },
+    {
+     "title": "给样例",
+     "desc": "贴一份你满意的成品"
+    }
+   ],
+   "side": {
+    "kicker": "进阶",
+    "icon": "book",
+    "headline": "写一次\n[永久生效]",
+    "sub": "模板评论区领"
+   },
+   "caption": "写一次 以后每次都[按你的来]"
+  },
+  {
+   "type": "compare",
+   "badge": "改前改后",
+   "title": "差别有多大",
+   "compare": {
+    "left": {
+     "label": "BEFORE",
+     "name": "默认设置",
+     "points": [
+      "每次都要重新交代",
+      "动不动就瞎编",
+      "积分哗哗地掉"
+     ]
+    },
+    "right": {
+     "label": "AFTER",
+     "name": "改完 6 项",
+     "points": [
+      "开口就懂你",
+      "不确定会先问",
+      "积分省一半"
+     ]
+    }
+   },
+   "side": {
+    "kicker": "对比",
+    "icon": "spark",
+    "headline": "像换了\n一个 AI",
+    "sub": "同一个任务实测"
+   },
+   "caption": "改完以后 [像换了一个 AI]"
+  },
+  {
+   "type": "big",
+   "badge": "一句话",
+   "quote": "设置花 3 分钟\n省下的是[每天半小时]",
+   "note": "收藏这一期，装完照着改",
+   "side": {
+    "kicker": "总结",
+    "icon": "star",
+    "headline": "先收藏\n再动手",
+    "sub": "下期讲 5 个必装 skill"
+   },
+   "caption": "先收藏 [装完照着改]"
+  },
+  {
+   "type": "cta",
+   "badge": "领模板",
+   "title": "6 项设置清单\n[打包好了]",
+   "cta": {
+    "icon": "gift",
+    "lead": "评论区扣",
+    "word": "设置",
+    "get": "我把清单 + 员工手册模板发你"
+   },
+   "side": {
+    "kicker": "下期预告",
+    "icon": "rocket",
+    "headline": "5 个必装\nskill",
+    "sub": "关注不迷路"
+   },
+   "caption": "评论区扣[设置] 清单发你",
+   "chips": [
+    {
+     "icon": "doc",
+     "text": "6 项设置清单"
+    },
+    {
+     "icon": "book",
+     "text": "员工手册模板"
+    },
+    {
+     "icon": "skill",
+     "text": "3 个基础 skill"
+    }
+   ]
+  }
+ ]
+}
