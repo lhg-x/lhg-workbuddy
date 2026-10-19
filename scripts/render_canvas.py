@@ -422,7 +422,8 @@ def main():
             "pages": []}
     for i, p in enumerate(pages):
         av = p.get("avatar") or (avs[i % len(avs)] if avs and not a.hole else None)
-        doc, typ = page_html(cfg, p, i, len(pages), L, av, src.parent)
+        pn, pt = p.get("page_no", [i + 1, len(pages)])  # 可覆盖页码：[第几页, 共几页]
+        doc, typ = page_html(cfg, p, pn - 1, pt, L, av, src.parent)
         h = out / f"page_{i + 1:02d}.html"
         png = out / f"page_{i + 1:02d}.png"
         h.write_text(doc, encoding="utf-8")

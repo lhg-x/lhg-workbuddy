@@ -1,0 +1,13 @@
+{"source":"Area.mp4","cam_crop":[1105,744,280],"theme":"mint","seed":7,"output":"test.mp4",
+ "host":"lhg·AI实验室","nav":{"logo":"W","brand":"WorkBuddy","topic":"从零上手 · 第 01 课","tabs":["为什么","安装","实操"]},
+ "segments":[
+  {"id":"hook","type":"A","src_start":9.1,"src_end":20.3,
+   "page":{"type":"big","badge":"开场","title":"一个奇怪的现象","quote":"AI 已经能帮人干活\n可很多人 [连一个 AI 工具都没装过]","note":"不是不想用，是不知道从哪开始",
+           "side":{"kicker":"这套课给谁","icon":"user","headline":"没用过 AI 的\n普通人","sub":"不讲概念 · 一步步上手"}},
+   "captions":[{"t":0,"text":"AI 现在已经能 [帮人干活] 了"},{"t":2.46,"text":"可我发现一件 [挺奇怪的事]"},{"t":4.52,"text":"身边很多人 [连一个 AI 工具都没装过]"},{"t":7.2,"text":"不是不想用 [是不知道从哪开始]"}]},
+  {"id":"ui","type":"B","src_start":91.9,"src_end":102.7,
+   "page":{"title":"认识主界面","subtitle":"实操演示","screen":{"url":"WorkBuddy · 主界面","step":"STEP 3"},
+           "side":{"kicker":"跟着看","icon":"cursor","headline":"左边是任务\n中间说需求","sub":"三块区域记住就够"}},
+   "screen":{"raw":"ui.mov","raw_start":5.0,"events":"ui.events.jsonl"},
+   "captions":[{"t":0,"text":"进来的界面 [就三块]"},{"t":2.1,"text":"左边是任务 [中间跟它说话]"},{"t":4.4,"text":"右边 [看结果]"},{"t":6.1,"text":"马上让它做 [第一件小事]"},{"t":9.1,"text":"点 [新建任务]"}]}
+ ]}
