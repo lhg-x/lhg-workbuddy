@@ -21,7 +21,7 @@ FX, FY, FW, FH = 36, 40, 648, 880           # 外框
 CARD = (24, 84, 600, 466)                    # 主卡片（相对外框）
 CAM_D, CAM_RING = 216, 5                     # 出镜圆窗
 CAM_X, CAM_Y = 30, 572
-SCREEN = (36, 122, 576, 352)                 # 录屏框（相对外框，16:10）
+SCREEN = (36, 122, 576, 360)                 # 录屏框（相对外框，16:10 = Mac 全屏去刘海）
 CAM_C = (FX + CAM_X + CAM_D / 2, FY + CAM_Y + CAM_D / 2)
 CAM_R = CAM_D / 2 - CAM_RING
 
@@ -197,6 +197,8 @@ em{{font-style:normal;{em}}}
 .scr{{position:absolute;left:{SCREEN[0]}px;top:{SCREEN[1]}px;width:{SCREEN[2]}px;height:{SCREEN[3]}px;border-radius:12px;
   background:repeating-linear-gradient(45deg,{rgba(a, .06)} 0 14px,transparent 14px 28px),{t['tile']};border:1px solid {t['tile_line']};
   display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;color:{t['muted']};font-size:15px;z-index:3}}
+.scr:before{{content:"";position:absolute;inset:-4px;border-radius:16px;z-index:-1;background:linear-gradient({L.angle}deg,{a},{a2});
+  box-shadow:0 0 0 6px {rgba(a, .14)},0 14px 34px -8px {rgba(a, .45)}}}
 .scr .ico{{width:42px;height:42px;color:{rgba(a, .6)}}}
 .scrlab{{position:absolute;left:12px;right:12px;bottom:0;display:flex;align-items:center;gap:14px}}
 .scrlab .stepno{{font:900 15px/1 "SF Mono",Menlo,monospace;color:{t['on_accent']};background:linear-gradient({L.angle}deg,{a},{a2});padding:8px 10px;border-radius:8px}}
