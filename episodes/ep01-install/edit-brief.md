@@ -1,37 +1,47 @@
-# 第1课 粗剪任务书（给 Antigravity）
+# 第1课 成片任务书 v2（给 Antigravity）
 
-- 源文件：`/Users/kanshan28/Movies/wb/ep01/Area.mp4`（lhg 真人口播 + 录屏）
-- 参考稿：本仓库 `episodes/ep01-install/script.md`（提词器版）
-- 工作目录：`~/Movies/wb/ep01/edit/`。**只读原片，永不覆盖**；所有中间文件放工作目录。
-- 本轮目标：**粗剪 v1 跑通**，不做花哨特效。
+> v1 理解错了，作废。正确理解如下：
 
-## 0. 环境
-- 需要 `ffmpeg`（没有就 `brew install ffmpeg`）。
-- 转写：Apple 芯片优先 `pip install mlx-whisper`（模型 large-v3-turbo）；否则 `faster-whisper`（small/medium，int8）。语言 zh，开启词级时间戳。
-- 遇到需要密码、付费、系统权限弹窗 → 停下，交给 lhg。
+## 0. 这条片子长什么样
+- 成片 = **卡片视频**（3:4，1080×1440），不是直接剪原片。
+- 每一段画面二选一：
+  - **A 卡片页**：讲道理、讲安排的段落 → 用 `scripts/render_canvas.py` 出卡片 PNG（格式见 `templates/canvas/README.md`、示例 `templates/canvas/example.json`）。
+  - **B 录屏页**：讲操作的段落 → 卡片里挖出 16:10 录屏框（输出像素 `x=108, y=243, 864×540`，带主题色描边），框里放 WorkBuddy 真实操作录屏，用 `scripts/zoom_follow.py` 跟随点击放大。
+- 左下圆形头像窗：本轮先放静态照片 #16（lhg 提供），以后换成即梦数字人视频。
+- **声音**：全片只用 lhg 的口播。
+- 参考稿：`episodes/ep01-install/script.md`；录屏规范：`playbook/recording-sop.md`；样片参数参考：`episodes/ep01-install/sample/`。
 
-## 1. 先看片，出报告（做完先汇报，再继续）
-1. `ffprobe` 记录：时长、分辨率、帧率、音频采样率、声道。
-2. 每 10 秒抽 1 帧拼成联系表 `contact.jpg`，判断画面构成：纯录屏 / 有人像小窗 / 全程人像。
-3. 转写全片 → `transcript.json`（词级）+ `raw.srt`。
-4. 把转写按 script.md 的段落（钩子、为什么做、系列安排、下载、Mac 安装、Windows 安装、登录界面、第一次对话、看结果、结尾）对齐，输出 `align.md`：每段起止时间、是否有重录、缺了哪段。
+## 1. 处理 `/Users/kanshan28/Movies/wb/ep01/Area.mp4`（只读，不覆盖）
+工作目录 `~/Movies/wb/ep01/edit/`。
+1. `ffprobe` 看时长/分辨率；每 10 秒抽 1 帧拼 `contact.jpg`。
+2. **音频**：导出为口播母带。去掉说错、重复的句子（同一句保留最后一遍完整的），句间静音 > 0.6s 压到 0.25s，切点落在词之间，20ms 淡入淡出 → `narration_master.wav`。
+3. 转写母带（Apple 芯片优先 mlx-whisper large-v3-turbo，否则 faster-whisper；zh；词级时间戳），按 script.md 的段落切分 → `segments.json`：`[{id, title, start, end, text, type: "A"|"B"}]`。
+4. **原片画面**（不露脸的录屏部分）：逐段判断能不能直接当 B 页素材（清晰、操作完整、没露隐私）。能用的记到 `segments.json` 的 `src`；不能用或缺的，进第 2 步补录。
+5. **先汇报**：发 `contact.jpg` + `segments.json` 摘要（每段时长、A/B、素材来源）给 lhg，确认后再往下做。
 
-## 2. 剪辑规则
-1. **重录**：同一句说了多遍 → 保留最后一遍完整、流畅的；删掉说错、卡壳、半句。
-2. **停顿**：句间静音 > 0.6s 压到 0.25s；口头禅（嗯、呃、那个）能剪就剪，剪不干净就保留，不要剪碎。
-3. **等待段**：没人说话、只是在等下载/安装/AI 生成的画面 → 2–4 倍速（音频静音或垫轻音乐），每段加速后不超过 3 秒。
-4. **剪点**：切在词与词之间（用词级时间戳），前后各留 0.05s，加 20ms 音频淡入淡出，避免爆音。
-5. **隐私**：登录二维码、手机号、头像昵称、微信图标 → 马赛克或高斯模糊。用 OpenCV `QRCodeDetector` 自动找二维码帧；其余列出时间点，让 lhg 确认。
-6. **字幕**：用 script.md 当参考修正转写（专有名词统一写 WorkBuddy、Mac、Windows、Excel），底部居中，白字黑描边、粗体，每行 ≤ 14 字，烧录进画面，同时导出 `subs.srt`。
-7. 输出保持原分辨率和原比例；画面构成不确定时，先按原样剪，不要裁切。
+## 2. 去 WorkBuddy 真实操作补录 B 页（按 recording-sop.md）
+每个镜头单独录：`shots/<id>.mov` + `shots/<id>.jsonl` 时间轴（`{t, shot, action, x, y, label, zoom}`），光标慢速移动（0.7s 缓动），每步停 1.5s。
 
-## 3. 交付（放在 `~/Movies/wb/ep01/edit/`）
-- `ep01_v1.mp4`：粗剪成片（H.264，CRF 18，AAC 192k）
-- `edl.json`：保留片段列表 `[{src_start, src_end, speed, note}]`，方便以后改
-- `subs.srt`、`align.md`、`contact.jpg`
-- `report.md`：成片时长、删了多少、加速了哪些段、需要 lhg 确认的点（时间码 + 原因）
+| 段落 | 要录的操作 | 备注 |
+|---|---|---|
+| 下载 | 浏览器搜 WorkBuddy → 进官方网站（codebuddy.cn/work）→ 悬停「下载 WorkBuddy」 | 用官方站，不点山寨站 |
+| Mac 安装 | 打开安装包 → 把图标拖向「应用程序」 | 已安装会弹「替换」→ **停，问 lhg**；也可只录拖拽过程不松手 |
+| Windows 安装 | 无 Windows 电脑 → 改成 A 卡片页（三步：双击 → 下一步 → 核对发布者） | 不录 |
+| 登录 | 原片有就用原片；没有就**停，交给 lhg** 扫码 | 二维码、手机号必须打码 |
+| 界面 | 光标依次悬停左侧任务栏 → 中间输入框 → 右侧结果区，各停 1.5s | 以实际界面名称为准，记录到 jsonl |
+| 第一次对话 | 新建任务 → 选桌面「练习-第1课」文件夹 → 输入 script.md 里的演示指令 → 发送 → 等生成 → 右侧结果区打开 Excel | 等待段后期加速；找不到对应按钮就截图问 lhg，不要猜 |
 
-## 4. 不要做
-- 不发布、不上传任何平台。
-- 不改原片、不删除工作目录以外的文件。
-- 不自行加 AI 配音、不改口播内容。
+功能名称、按钮位置**以 lhg 电脑上 WorkBuddy 实际界面为准**；和 script.md 对不上的，记到 `report.md`。
+
+## 3. 合成
+1. **卡片**：每段写 `cards/<id>.json` → `render_canvas.py` 出 PNG（B 页用 screen 页型，录屏框透明）；同一条片子固定一个主题和 seed。
+2. **B 页画面**：录屏先裁掉顶部 38pt 刘海黑条 → `zoom_follow.py` 出 864×540 → 放到卡片底下的录屏框位置，上面叠卡片 PNG。
+3. **时长对齐口播**：每页时长 = 该段口播时长。录屏偏长 → 加速（≤4 倍）或剪掉等待；偏短 → 定格最后一帧。
+4. 头像圆窗放静态照片 #16；底部字幕用卡片自带字幕位或另烧录（每行 ≤14 字，按 script.md 校对，专有名词写 WorkBuddy）。
+5. 音频 = `narration_master.wav`，可垫很轻的背景音乐（-28dB 左右）。
+6. 输出 `ep01_v1.mp4`（1080×1440，30fps，H.264 CRF 18，AAC 192k）+ `subs.srt`。
+
+## 4. 交付与边界
+- 交付到 `~/Movies/wb/ep01/edit/`：`ep01_v1.mp4`、`segments.json`、`cards/`、`shots/`、`subs.srt`、`report.md`（时长、各段素材来源、需要 lhg 确认的点）。
+- 不发布；不改原片；不改口播内容；不加 AI 配音。
+- 遇到登录、付费、权限弹窗、隐私授权 → 停，交给 lhg。
