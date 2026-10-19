@@ -51,3 +51,27 @@
 - `custom.github` 连接器里的 token 已失效；GitHub 操作走 `~/.config/x-tech-posts/gh-pat`（`GH_TOKEN=$(cat ...)`），推送前按惯例跟用户打招呼
 - `template/` 在 .gitignore 中：视频文件不进仓库是**设计如此**（345MB+），只提交数据/文档/代码
 - leviiii2026 网页端显示"用户不存在"（短链/APP 端正常），不要在这上面浪费时间
+
+## 五、进度（2026-10-19 · Notion AI 接手）
+
+| 待办 | 状态 | 产物 |
+| --- | --- | --- |
+| 1 口播转写 | ✅ 54/55 | `teardowns/*/transcripts/<id>.md` 已回填；原始分段 `data/asr-2026-10-19/<id>.json`。faster-whisper small、CPU、**未人工校对**。原片超过 300s 的只转写了前 120s（开头钩子 + 结构）。7697651715168390763（Work Buddy课代表）feed 接口已取不到，疑似下架 |
+| 2 画面层深拆 | ✅ 5 条 | `teardowns/2026-10-19-workbuddy/style-cards.md` + `va/<id>/analysis.json`（小k 第9、12、31期，小羊，珍妮丁丁说） |
+| 3 画布模板 | ✅ v2 | `templates/canvas/`（themes.py / icons.py / example.json / README）+ `scripts/render_canvas.py`。按用户反馈重做：去掉 AI 水印、视觉不照搬参考号、**每期按 seed 随机换主题和细节**、照片轮换、B-roll 录屏框页、`--hole` 透明叠层 |
+| 4 出镜 + 声音 pipeline | ⏸ 最后做 | 用户形式已定：克隆声 + 几张照片在圆窗里随机轮换；卡片讲解（A-roll）和实操录屏（B-roll）交替。等照片和干声 |
+| 5 选题库 | ✅ v0.2 | `playbook/topics-workbuddy.md`：30 个免费选题 + 5 个付费课 + 开头钩子库（含"马化腾/战略级产品"改写版） |
+| 加 · 评论/私域 | ✅ | `playbook/engagement-hooks.md`：6 类评论钩子、置顶评论模板、站内私域承接、前 10 期轮换表 |
+
+用户确认的规则（2026-10-19）：
+- 卡片框架（导航 / 主卡片 / 左下圆形出镜 / 右侧信息 / 底部字幕）保留，**审美自由发挥、每期不一样**；AI 标识在发布时勾选，画面里不放水印
+- "被马化腾定位为第三个战略级产品"这个钩子**可以用，但不要每期用、不要逐字抄**，改写版见选题库 §4.1
+- 图片、视频可以入库（`.gitignore` 已放开，只忽略 wav）；改动直接推 main
+- 照片 + 声音克隆最后做
+
+新发现（修正第二节结论）：
+- **清单体才是最稳的爆款类型**：≤120s 的清单视频赞中位数 10,363（7 条），白嫖类中位数只有 395，小k 第9期是孤例
+- 小k **不出镜**：16:9 录屏 + 机器人吉祥物片头 + 黄底字幕；第31期评论 391（评论/赞 5.4%，小k 中位数 2.2%）来自口播里的评论诱饵
+- `aweme.snssdk.com/aweme/v1/feed/?aweme_id=<id>` 不带代理也能从 Notion 沙盒直接下载（返回横屏 1024×576 版本）；BPM 检测五条全是 129.2，不可信
+- 新版 PyAV 和 faster-whisper 的 `decode_audio` 不兼容（`metadata_errors` 报错），脚本里改成先用 ffmpeg 转 16k wav、再用 numpy 读入
+- 新增脚本：`scripts/fetch_and_transcribe.py`（下载 + 转写）、`scripts/fill_transcripts.py`（回填，可重复跑）、`scripts/render_canvas.py`（卡片渲染）

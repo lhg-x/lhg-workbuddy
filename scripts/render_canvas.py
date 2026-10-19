@@ -221,11 +221,11 @@ em{{font-style:normal;{em}}}
 .side p{{margin-top:12px;font-size:16px;line-height:1.5;color:{t['sub']}}}
 .prog{{margin-top:16px;display:flex;gap:6px}} .prog span{{flex:1;max-width:34px;height:5px;border-radius:3px;background:{t['tile_line']}}}
 .prog span.done{{background:{rgba(a, .45)}}} .prog span.on{{background:linear-gradient(90deg,{a},{a2});max-width:52px}}
-.hero{{position:absolute;right:30px;bottom:76px;width:150px;height:150px}}
+.hero{{position:absolute;right:28px;bottom:40px;width:136px;height:136px}}
 .hero .halo{{position:absolute;inset:-30px;border-radius:50%;background:radial-gradient(circle,{rgba(a, .22)},transparent 65%)}}
 .hero .hcore{{position:absolute;inset:18px;border-radius:38px;transform:rotate(-8deg);display:flex;align-items:center;justify-content:center;
   background:linear-gradient({L.angle}deg,{a},{a2});color:{t['on_accent']};box-shadow:0 1px 0 rgba(255,255,255,.5) inset,0 24px 40px -12px {rgba(a, .55)}}}
-.hero .hcore .ico{{width:62px;height:62px;transform:rotate(8deg)}}
+.hero .hcore .ico{{width:56px;height:56px;transform:rotate(8deg)}}
 .bar{{margin-top:14px;height:8px;border-radius:5px;background:{rgba('#ffffff' if t['dark'] else '#000000', .07)};overflow:hidden}}
 .bar i{{display:block;height:100%;border-radius:5px;background:linear-gradient(90deg,{a},{a2})}}
 .card.p-cover .sub{{max-width:340px}}
