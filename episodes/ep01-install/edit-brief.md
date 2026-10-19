@@ -7,7 +7,7 @@
 - 每一段画面二选一：
   - **A 卡片页**：讲道理、讲安排的段落 → 用 `scripts/render_canvas.py` 出卡片 PNG（格式见 `templates/canvas/README.md`、示例 `templates/canvas/example.json`）。
   - **B 录屏页**：讲操作的段落 → 卡片里挖出 16:10 录屏框（输出像素 `x=108, y=243, 864×540`，带主题色描边），框里放 WorkBuddy 真实操作录屏，用 `scripts/zoom_follow.py` 跟随点击放大。
-- 左下圆形头像窗：本轮先放静态照片 #16（lhg 提供），以后换成即梦数字人视频。
+- 左下圆形头像窗：放 `Area.mp4` 右下角露脸画面裁成的圆（嘴型与口播同源）；以后可换成即梦数字人视频。
 - **声音**：全片只用 lhg 的口播。
 - 参考稿：`episodes/ep01-install/script.md`；录屏规范：`playbook/recording-sop.md`；样片参数参考：`episodes/ep01-install/sample/`。
 
@@ -33,9 +33,19 @@
 
 功能名称、按钮位置**以 lhg 电脑上 WorkBuddy 实际界面为准**；和 script.md 对不上的，记到 `report.md`。
 
+
+## 2.5 录屏的「放大 + 高亮框」规范（必须遵守）
+目的：讲到哪个功能，观众眼睛立刻落在哪个按钮上。
+1. **录屏框描边**：B 页录屏框外圈一道主题色渐变描边（accent → accent2，带光晕），render_canvas.py 已内置；**只加在录屏框上**，头像圆框不加。
+2. **每讲一个功能 = 一个事件**，时间轴每行除了 `{t, shot, action, x, y, label}`，**必须加 `box: [x, y, w, h]`**（pt，屏幕坐标，含刘海；就是被讲的那个按钮 / 菜单项 / 输入框的外框）。获取方式：录完对关键帧截图量出来，或用辅助功能读控件位置；量不准宁可框大一点。
+3. **镜头**：`scripts/zoom_highlight.py` 读 `events.jsonl`（`{t: 成片秒, box, zoom}`），在 t 开始 0.6s 平滑放大到 box 中心；单个按钮 zoom 2.0–2.2，一整块区域（侧边栏、输入框）1.6–1.9；讲完一组回全景 `{"box":null,"zoom":1}`。
+4. **高亮框**：镜头到位后 0.25s 弹出圆角框（主题主色 accent，3px 实线 + 柔光晕，比 box 外扩 6pt，从 1.12 倍缩到 1.0 倍并淡入），停到下一个事件，0.2s 淡出。
+5. **对齐口播**：事件 t 对齐到口播里说出这个功能名的那个词（用词级时间戳），比如说到「新建任务」时框住「新建任务」。光标也要在该按钮上或附近。
+6. 用法：`python3 scripts/zoom_highlight.py raw.mov events.jsonl scr.mp4 <原片起点秒> <时长秒> <accent色>` → 864×540，放到卡片录屏框 (108,243)。
+
 ## 3. 合成
 1. **卡片**：每段写 `cards/<id>.json` → `render_canvas.py` 出 PNG（B 页用 screen 页型，录屏框透明）；同一条片子固定一个主题和 seed。
-2. **B 页画面**：录屏先裁掉顶部 38pt 刘海黑条 → `zoom_follow.py` 出 864×540 → 放到卡片底下的录屏框位置，上面叠卡片 PNG。
+2. **B 页画面**：`zoom_highlight.py`（自动裁顶部 38pt 刘海黑条）出 864×540，带放大和高亮框 → 放到卡片底下的录屏框位置，上面叠卡片 PNG。
 3. **时长对齐口播**：每页时长 = 该段口播时长。录屏偏长 → 加速（≤4 倍）或剪掉等待；偏短 → 定格最后一帧。
 4. 头像圆窗放静态照片 #16；底部字幕用卡片自带字幕位或另烧录（每行 ≤14 字，按 script.md 校对，专有名词写 WorkBuddy）。
 5. 音频 = `narration_master.wav`，可垫很轻的背景音乐（-28dB 左右）。
