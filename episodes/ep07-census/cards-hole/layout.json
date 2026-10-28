@@ -1,0 +1,92 @@
+{
+  "seed": 3174,
+  "theme": "ocean",
+  "card": "lift",
+  "nav": "search",
+  "highlight": "marker",
+  "caption": "plain",
+  "pattern": "dots",
+  "ornament": "rings",
+  "size": [
+    1080,
+    1440
+  ],
+  "cam_circle": {
+    "cx": 261.0,
+    "cy": 1080.0,
+    "r": 154.5
+  },
+  "screen_rect": {
+    "x": 108.0,
+    "y": 243.0,
+    "w": 864.0,
+    "h": 540.0
+  },
+  "pages": [
+    {
+      "file": "page_01.png",
+      "type": "cover",
+      "avatar": null
+    },
+    {
+      "file": "page_02.png",
+      "type": "big",
+      "avatar": null
+    },
+    {
+      "file": "page_03.png",
+      "type": "stats",
+      "avatar": null
+    },
+    {
+      "file": "page_04.png",
+      "type": "stats",
+      "avatar": null
+    },
+    {
+      "file": "page_05.png",
+      "type": "big",
+      "avatar": null
+    },
+    {
+      "file": "page_06.png",
+      "type": "list",
+      "avatar": null
+    },
+    {
+      "file": "page_07.png",
+      "type": "stats",
+      "avatar": null
+    },
+    {
+      "file": "page_08.png",
+      "type": "compare",
+      "avatar": null
+    },
+    {
+      "file": "page_09.png",
+      "type": "list",
+      "avatar": null
+    },
+    {
+      "file": "page_10.png",
+      "type": "stats",
+      "avatar": null
+    },
+    {
+      "file": "page_11.png",
+      "type": "list",
+      "avatar": null
+    },
+    {
+      "file": "page_12.png",
+      "type": "steps",
+      "avatar": null
+    },
+    {
+      "file": "page_13.png",
+      "type": "cta",
+      "avatar": null
+    }
+  ]
+}
